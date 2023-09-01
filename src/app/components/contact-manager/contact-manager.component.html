@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <p class="h3">NG Contacts
+            <a class="btn btn-danger" routerLink="/contacts/add">Add New Contact</a>
+        </p>
+       <p class="fst-italic">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Laudantium est unde necessitatibus quos fuga ab corrupti ipsam, 
+        nihil facere itaque dignissimos odio officia quo
+        molestiae quam, iusto, blanditiis veritatis error.
+        Unde tempora nisi et repellendus amet odit! Laudantium reiciendis
+        ullam excepturi dolores beatae, ipsam, nulla eveniet pariatur facere corporis, 
+        ut nihil nobis nam debitis. Labore illo possimus nulla sed nihil.</p>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="search user">
+                        </div>
+                        <div class="col">
+                            <input type="button" value="search" class="btn btn-dark">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Loading spinner -->
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<!--Display Error Message-->
+<div *ngIf="!loading && errorMessage" >
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="h4 text-danger fw-bold text-center">{{errorMessage}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Cards -->
+<div *ngIf="!loading && contacts.length > 0" class="container mt-3">
+    <div class="row">
+        <div *ngFor="let contact of contacts" class="col-md-6">
+            <div class="card list-group-item list-group-item-danger my-2">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <img [src]="contact.photo" alt="" class="contact-image">
+                        </div>
+                        <div class="col-sm-7">
+                            <ul class="list-group">
+                                <li class="list-group-item">Name: <span class="fw-bold"> {{contact.name}}</span></li>
+                                <li class="list-group-item">Email: <span class="fw-bold">{{contact.email}}</span></li>
+                                <li class="list-group-item">Mobile <span class="fw-bold">{{contact.mobile}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1">
+                            <a routerLink="/contacts/view/{{contact.id}}" class="btn btn-warning my-1"><i class="fa fa-eye"></i></a>
+                            <a routerLink="/contacts/edit/:contactId" class="btn btn-primary my-1"><i class="fa fa-pencil"></i></a>
+                            <button type="button" class="btn btn-success my-1"><i class="fa fa-trash"></i></button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
